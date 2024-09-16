@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Bigspring Light Astro",
+    "title": "Doetta",
     "base_url": "https://bigspring-light-astro.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_width": "200",
-    "logo_height": "38",
-    "logo_text": "Astroplate"
+    "logo": "/images/doetta-logo.png",
+    "logo_width": "250",
+    "logo_height": "65",
+    "logo_text": "doetta"
   },
 
   "settings": {
@@ -19,15 +19,15 @@
 
   "nav_button": {
     "enable": true,
-    "label": "Get Started",
-    "link": "/contact"
+    "label": "Join Doetta",
+    "link": "/doetta"
   },
 
   "params": {
     "contact_form_action": "",
     "tag_manager_id": "",
-    "footer_content": "Lorem ipsum dolor sit amet, consectetur elit. Consjat tristique eget amet, tempus eu at cttur.",
-    "copyright": "Designed and Developed By [Themefisher](https://themefisher.com/)"
+    "footer_content": "Join the Community!",
+    "copyright": "Designed and Developed By Anunay Aatipamula"
   },
 
   "metadata": {
