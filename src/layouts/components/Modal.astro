@@ -1,0 +1,89 @@
+---
+const { id = "signUpModal", open = "Join Doetta" } = Astro.props;
+---
+
+<style lang="scss">
+  dialog {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background: white;
+    max-width: 400px;
+    width: 100%;
+    &::backdrop {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+</style>
+
+
+<dialog id={id}>
+  <div class="text-center">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Sign Up for Doetta</h3>
+    <slot name="main">
+      <form id="signUpForm">
+        <input
+          type="text"
+          name="names"
+          placeholder="Your Names (e.g. Alex & Sam)"
+          class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          required
+        />
+        <input
+          type="text"
+          name="interests"
+          placeholder="Top Interests (e.g. Hiking, Cooking)"
+          class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+        />
+        <button
+          type="submit"
+          class="mt-4 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gradient-to-r from-pink-500 to-orange-400 text-base font-medium text-white hover:from-pink-600 hover:to-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:text-sm"
+        >
+          Sign Up
+        </button>
+      </form>
+    </slot>
+  </div>
+  <form method="dialog" class="mt-4">
+    <slot name="close">
+      <button
+        class="w-full px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
+      >
+        Close
+      </button>
+    </slot>
+  </form>
+</dialog>
+
+<script define:vars={{ id }}>
+  const modal = document.getElementById(id);
+  const form = document.getElementById('signUpForm');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      console.log('Form submitted:', data);
+      // Here you would typically send the data to your backend
+      modal.close();
+      form.reset();
+    });
+  }
+</script>

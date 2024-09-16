@@ -1,13 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
-import Cta from "@/layouts/components/Cta.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 import FeatureItem from "@/layouts/components/FeatureItem.astro";
+import Modal from "@/layouts/components/Modal.astro";
+
 
 const homepage = await getEntryBySlug("homepage", "index");
 const { banner, feature, services, workflow, call_to_action } = homepage.data;
+const { id = "signUpModal"} = Astro.props;
 
 
 ---
@@ -39,7 +41,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
 
           {
             banner?.button?.enable && (
-              <button class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button class="btn btn-primary mt-4" onclick={`window.${id}.showModal()`}>
                 {banner.button.label}
               </button>
             )
@@ -55,6 +57,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
               />
             )
           }
+          {<Modal id={id}/>}
         </div>
       </div>
     </div>
