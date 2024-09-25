@@ -8,18 +8,59 @@ import Modal from "@/layouts/components/Modal.astro";
 
 
 const homepage = await getEntryBySlug("homepage", "index");
-const { banner, feature, services, workflow, call_to_action } = homepage.data;
+const { banner, feature, story, testimonials, faq} = homepage.data;
 const { id = "signUpModal"} = Astro.props;
 
 
 ---
 
 <Base>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
+
+  <script type="module">
+    import KeenSlider from 'https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/+esm'
+
+    const keenSlider = new KeenSlider(
+      '#keen-slider',
+      {
+        loop: true,
+        slides: {
+          origin: 'center',
+          perView: 1.25,
+          spacing: 16,
+        },
+        breakpoints: {
+          '(min-width: 1024px)': {
+            slides: {
+              origin: 'auto',
+              perView: 1.5,
+              spacing: 32,
+            },
+          },
+        },
+      },
+      []
+    )
+
+    const keenSliderPrevious = document.getElementById('keen-slider-previous')
+    const keenSliderNext = document.getElementById('keen-slider-next')
+
+    const keenSliderPreviousDesktop = document.getElementById('keen-slider-previous-desktop')
+    const keenSliderNextDesktop = document.getElementById('keen-slider-next-desktop')
+
+    keenSliderPrevious.addEventListener('click', () => keenSlider.prev())
+    keenSliderNext.addEventListener('click', () => keenSlider.next())
+
+    keenSliderPreviousDesktop.addEventListener('click', () => keenSlider.prev())
+    keenSliderNextDesktop.addEventListener('click', () => keenSlider.next())
+  </script>
   <!-- banner -->
   <section class="section pb-[50px]">
     <div class="container">
       <div class="row text-center">
-        <div class="mx-auto lg:col-10">
+        <div class="mx-auto lg:col-11">
           <h1 class="font-primary font-bold">{banner?.title}</h1>
           <p class="font-secondary text-3xl mt-3 mb-3">{banner?.subheading}</p>
           {
@@ -29,8 +70,8 @@ const { id = "signUpModal"} = Astro.props;
           }
           {
             banner?.contents && (
-              <div class="bg-gradient-to-r from-pink-100 to-orange-100 p-6 rounded-xl shadow-lg max-w-2xl mx-auto">
-                <div class="space-y-4 font-sans text-lg">
+              <div class="bg-gradient-to-r from-pink-100 to-orange-100 p-4 rounded-xl shadow-xl  mx-auto max-w-10xl">
+                <div class="space-y-6 font-sans text-xl">
                   {banner.contents.map((feature) => (
                     <FeatureItem {...feature} />
                   ))}
@@ -41,11 +82,21 @@ const { id = "signUpModal"} = Astro.props;
 
           {
             banner?.button?.enable && (
-              <button class="btn btn-primary mt-4" onclick={`window.${id}.showModal()`}>
-                {banner.button.label}
-              </button>
+              <a class="group relative inline-block focus:outline-none focus:ring mt-5" href="https://forms.gle/ts35rBgQR4ZvtBSo7">
+          <span
+            class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-rose-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+          ></span>
+
+                <span
+                  class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest text-white bg-rose-600 group-active:text-opacity-75"
+                >
+            {banner.button.label}
+          </span>
+              </a>
+
             )
           }
+          <p class="mt-6">{banner.button.subtitle}</p>
           {
             banner?.image && (
               <Image
@@ -72,25 +123,18 @@ const { id = "signUpModal"} = Astro.props;
       <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         {
           feature!.features.map((item: any, i: number) => (
-            <div class="feature-card rounded-xl bg-white p-5 pb-8 text-center">
+            <div class="feature-card rounded-xl bg-white shadow-lg p-5 pb-8 text-center">
               {item.icon && (
-                // <Image
-                //   class="mx-auto"
-                //   src={item.icon}
-                //   width={30}
-                //   height={30}
-                //   alt=""
-                // />
-                <img
+                <Image
                   class="mx-auto"
-                  alt={item.icon}
                   src={item.icon}
                   width={180}
                   height={150}
+                  alt=""
                 />
               )}
               <div class="mt-4">
-                <p class="h5" set:html={markdownify(item!.name)} />
+                <p class="h5 font-bold" set:html={markdownify(item!.name)} />
                 <p class="mt-3">{item.content}</p>
               </div>
             </div>
@@ -99,6 +143,214 @@ const { id = "signUpModal"} = Astro.props;
       </div>
     </div>
   </section>
+
+
+  <!-- Testimonials -->
+  <section class="bg-white">
+    <div class="mx-auto px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
+        <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {testimonials!.title}
+          </h2>
+
+          <p class="mt-4 text-gray-700">
+            {testimonials!.subtitle}
+          </p>
+
+          <div class="hidden lg:mt-8 lg:flex lg:gap-4">
+            <button
+              aria-label="Previous slide"
+              id="keen-slider-previous-desktop"
+              class="rounded-full border border-rose-600 p-3 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5 rtl:rotate-180"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+
+            <button
+              aria-label="Next slide"
+              id="keen-slider-next-desktop"
+              class="rounded-full border border-rose-600 p-3 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+            >
+              <svg
+                class="size-5 rtl:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="-mx-6 lg:col-span-2 lg:mx-0">
+          <div id="keen-slider" class="keen-slider">
+            {
+              testimonials!.people.map((item: any, i: number) => (
+                <div class="keen-slider__slide ">
+                  <blockquote
+                    class="flex h-full flex-col justify-between p-6 sm:p-8 lg:p-12 bg-gray-100 shadow-2xl rounded-l"
+                  >
+                    <div class="mt-4">
+                      <p class="text-2xl font-bold text-rose-600 sm:text-3xl">{item!.name}</p>
+
+                      <p class="mt-4 leading-relaxed text-gray-700">
+                        {item!.text}
+                      </p>
+                    </div>
+
+                    <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                      &mdash; {item!.from}
+                    </footer>
+                  </blockquote>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-4 lg:hidden">
+        <button
+          aria-label="Previous slide"
+          id="keen-slider-previous"
+          class="rounded-full border border-rose-600 p-4 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+        >
+          <svg
+            class="size-5 -rotate-180 transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+
+        <button
+          aria-label="Next slide"
+          id="keen-slider-next"
+          class="rounded-full border border-rose-600 p-4 text-rose-600 transition hover:bg-rose-600 hover:text-white"
+        >
+          <svg
+            class="size-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section text-center" >
+    {
+      banner?.button?.enable && (
+        <a class="group relative inline-block focus:outline-none focus:ring" href="https://forms.gle/ts35rBgQR4ZvtBSo7">
+          <span
+            class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-rose-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+          ></span>
+
+          <span
+            class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest text-white bg-rose-600 group-active:text-opacity-75"
+          >
+            {banner.button.label}
+          </span>
+        </a>
+
+      )
+    }
+    <p class="mt-6">{banner.button.subtitle}</p>
+  </section>
+
+  <!-- story -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+    <div class="text-center pb-12">
+      <h2>{markdownify(story!.title)}</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          story!.people.map((item: any, i: number) => (
+            <div class=" container w-full bg-gray-50 rounded-lg p-12 flex flex-col justify-center items-center">
+              <div class="mb-8">
+                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="photo">
+              </div>
+              <div class="text-center">
+                <p class="text-xl text-gray-700 font-bold mb-2">{item!.name}</p>
+                <p class="text-xl text-gray-500 mb-4">{item!.title}</p>
+
+                <p class="text-base text-gray-400 font-normal">{item!.text}</p>
+              </div>
+            </div>
+          ))
+        }
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section" >
+    <div class="container">
+      <div class="text-center">
+        <h2>{markdownify(faq!.title)}</h2>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 mt-6">
+
+      {
+        faq!.questions.map((item: any, i: number) => (
+          <details class="group [&_summary::-webkit-details-marker]:hidden mt-6">
+            <summary
+              class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-100 p-4 text-gray-900"
+            >
+              <h4 class="font-medium">{item!.name}</h4>
+
+              <svg
+                class="size-5 shrink-0 transition duration-300 group-open:-rotate-180"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+
+            <p class="mt-4 px-4 leading-relaxed text-gray-700">
+              {item!.content}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+
 
 
 </Base>

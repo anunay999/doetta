@@ -5,8 +5,8 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/doetta-logo.png",
-    "logo_width": "250",
+    "logo": "/images/duetta-logo.png",
+    "logo_width": "150",
     "logo_height": "65",
     "logo_text": "doetta"
   },
