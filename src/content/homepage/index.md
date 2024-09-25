@@ -71,18 +71,18 @@ testimonials:
 faq:
   title: FAQs
   questions:
-    - name: "What is Doetta?"
-      content: "Doetta is like Bumble, but for couples and much safer. It's a platform designed for couples to connect with other like-minded couples. Doetta helps couples expand their social circles, share experiences, and build a supportive community."
+    - name: "What is Duetta?"
+      content: "Duetta is like Bumble, but for couples and much safer. It's a platform designed for couples to connect with other like-minded couples. Duetta helps couples expand their social circles, share experiences, and build a supportive community."
 
     - name: "How does it work?"
-      content: "Doetta uses a profile-based system where couples can create accounts, share their interests, and get matched with other couples who have similar lifestyles, values, or hobbies. Once matched, you can chat, arrange meetups, or attend events together."
+      content: "Duetta uses a profile-based system where couples can create accounts, share their interests, and get matched with other couples who have similar lifestyles, values, or hobbies. Once matched, you can chat, arrange meetups, or attend events together."
 
-    - name: "Who should join Doetta?"
-      content: "Doetta is for couples of all types who want to meet other couples. Whether you're newly together or have been married for years, Doetta is designed to help you connect with couples who share your interests and values."
+    - name: "Who should join Duetta?"
+      content: "Duetta is for couples of all types who want to meet other couples. Whether you're newly together or have been married for years, Duetta is designed to help you connect with couples who share your interests and values."
 
-    - name: "How do I ensure my privacy on Doetta?"
+    - name: "How do I ensure my privacy on Duetta?"
       content: "We take your privacy seriously. You have control over the information you share and with whom. Your profile is only visible to other verified couples, and we ensure all data is protected with industry-standard encryption."
 
-    - name: "Is Doetta a dating app?"
-      content: "No, Doetta is not a dating app. It is a platform that focuses on fostering friendships and community-building among couples. Our goal is to help couples expand their social circles and connect with other couples for support, fun, and shared experiences."
+    - name: "Is Duetta a dating app?"
+      content: "No, Duetta is not a dating app. It is a platform that focuses on fostering friendships and community-building among couples. Our goal is to help couples expand their social circles and connect with other couples for support, fun, and shared experiences."
 ---
