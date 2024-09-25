@@ -38,12 +38,15 @@ story:
   people:
     - name: "Udit"
       title: "Co-Founder, Duetta"
+      icon: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
       text: “Because of my wife’s job we had to move to Hyderabad. Being new in the city, we had 0 friends circle as a couple. With Duetta we plan to change that similar people like us”
     - name: "Anunay"
       title: "Co-Founder, Duetta"
+      icon: "/images/anunay.png"
       text: “We are a couple in our late 20s and we shifted to a gated society in order to make new couple friends but we didn’t really vibe much because they had different values and interests. I love solving problems, I don’t want want others to feel what we felt ”
     - name: "Priyanka"
       title: "Advisor"
+      icon: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
       text: “Communities provide emotional, social, and sometimes even financial support. People feel a sense of belonging, which is vital for mental health and happiness”
 
 testimonials:
