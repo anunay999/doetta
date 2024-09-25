@@ -61,8 +61,7 @@ const { id = "signUpModal"} = Astro.props;
     <div class="container">
       <div class="row text-center">
         <div class="mx-auto lg:col-11">
-          <h1 class="font-primary font-bold">{banner?.title}</h1>
-          <p class="font-secondary text-3xl mt-3 mb-3">{banner?.subheading}</p>
+          <h1 class="font-primary font-bold mb-9">{banner?.title}</h1>
           {
             banner?.content && (
               <p class="mt-4" set:html={markdownify(banner.content)} />
@@ -82,7 +81,7 @@ const { id = "signUpModal"} = Astro.props;
 
           {
             banner?.button?.enable && (
-              <a class="group relative inline-block focus:outline-none focus:ring mt-5" href="https://forms.gle/ts35rBgQR4ZvtBSo7">
+              <a class="group relative inline-block focus:outline-none focus:ring mt-10" href="https://forms.gle/ts35rBgQR4ZvtBSo7">
           <span
             class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-rose-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
           ></span>
